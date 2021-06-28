@@ -87,8 +87,11 @@ class LivewireDatatable extends Component
         $this->initialiseSort();
 
         // check if there are sorting vars in the session
-        $this->sort = request()->session()->get('dt_' . $this->name . '_sort', $this->sort);
-        $this->direction = request()->session()->get('dt_' . $this->name . '_direction', $this->direction);
+        if (request()->hasSession())
+        {
+            $this->sort = request()->session()->get('dt_' . $this->name . '_sort', $this->sort);
+            $this->direction = request()->session()->get('dt_' . $this->name . '_direction', $this->direction);
+        }
     }
 
     public function columns()
@@ -411,7 +414,10 @@ class LivewireDatatable extends Component
         $this->page = 1;
 
         // put sorting info in the session
-        request()->session()->put(['dt_' . $this->name . '_sort' => $this->sort, 'dt_' . $this->name . '_direction' => $this->direction ]);
+        if (request()->hasSession())
+        {
+            request()->session()->put(['dt_' . $this->name . '_sort' => $this->sort, 'dt_' . $this->name . '_direction' => $this->direction ]);
+        }
     }
 
     public function toggle($index)
