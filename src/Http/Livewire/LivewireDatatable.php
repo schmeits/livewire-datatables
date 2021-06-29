@@ -395,12 +395,12 @@ class LivewireDatatable extends Component
         }
     }
 
-    public function updatingPerPage()
+    public function updatingPerPage($val)
     {
         // add pages to session
         if (request()->hasSession())
         {
-            request()->session()->put(['dt_' . $this->name . '_page' => $this->perPage]);
+            request()->session()->put(['dt_' . $this->name . '_page' => $val]);
         }
 
         $this->refreshLivewireDatatable();
