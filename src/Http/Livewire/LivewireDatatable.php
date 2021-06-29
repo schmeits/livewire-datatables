@@ -91,6 +91,7 @@ class LivewireDatatable extends Component
         {
             $this->sort = request()->session()->get('dt_' . $this->name . '_sort', $this->sort);
             $this->direction = request()->session()->get('dt_' . $this->name . '_direction', $this->direction);
+            $this->perPage = request()->session()->get('dt_' . $this->name . '_page', $this->perPage);
         }
     }
 
